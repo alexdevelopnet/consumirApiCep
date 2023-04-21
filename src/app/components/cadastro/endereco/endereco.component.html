@@ -1,0 +1,102 @@
+<br /><br />
+<h1>Cadastrar Endereço</h1>
+<form id="formulario" #f="ngForm" (ngSubmit)="cadastrar(f)">
+
+    <div class="row g-3">
+        <div class="col-sm-4">
+            <div class="form-outline">
+                <label class="form-label" for="form10Example1">Cep:</label>
+                <input type="text" class="form-control"
+                 name="cep" id="cep" 
+                  ngModel required
+                    #cep="ngModel" pattern="^(\d{5})(-?\d{3})$" minlength="8" maxlength="9"
+                    (blur)="consultarCep($event, f)" validadorCep />
+                <div class="text-danger">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="(cep?.invalid && cep?.touched) || cep?.dirty" class="text-danger">
+            <app-mensagem
+              *ngIf="cep?.errors?.['required']"
+              mensagem="O campo de cep é obrigatório"
+            ></app-mensagem>
+            <app-mensagem
+              *ngIf="cep?.errors?.['pattern']"
+              mensagem="O campo de cep deve seguir este exemplo: 00000-000"
+            ></app-mensagem>
+            <app-mensagem
+              *ngIf="cep?.errors?.['validadorCep']"
+              mensagem="O Cep informado não existe."
+            ></app-mensagem>
+    </div>
+     </div>
+    <div class="row g-2">
+        <div class="col-sm-8">
+            <div class="form-outline">
+                <label class="form-label" for="form7Example1">Logradouro:</label>
+                <input type="text" class="form-control" 
+                id="logradouro"
+                value="logradouro" 
+                name="logradouro"
+                  
+                    ngModel #logradouro="ngModel" 
+                    required />
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-outline">
+                <label class="form-label" for="form10Example2">numero:</label>
+                <input type="text" class="form-control" id="numero" value="numer" name="numero" ngModel required
+                    #cidade="ngModel" />
+            </div>
+        </div>
+    </div>
+    <div class="row g-2">
+        <div class="col-sm-4">
+            <div class="form-outline">
+                <label class="form-label" for="form10Example2">Cpmplemento:</label>
+                <input type="text"  class="form-control"
+                 id="estado" value="complemento" 
+                 name="complemento"
+                 ngModel
+                 #complemento="ngModel"
+                 required
+                 />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-outline">
+                <label class="form-label" for="form10Example2">Bairro:</label>
+                <input type="text" class="form-control" id="Bairro" value="bairro" name="bairro" ngModel required
+                    #cidade="ngModel" />
+            </div>
+        </div>
+    </div>
+    <div class="row g-2">
+        <div class="col-sm-4">
+            <div class="form-outline">
+                <label class="form-label" for="form10Example2">Estado:</label>
+                <input type="text"  class="form-control"
+                 id="estado" value="estado" 
+                 name="estado"
+                 ngModel
+                 #estado="ngModel"
+                 required
+                 />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-outline">
+                <label class="form-label" for="form10Example2">Cidade:</label>
+                <input type="text" class="form-control" id="cidade" value="cidade" name="cidade" ngModel required
+                    #cidade="ngModel" />
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="col-sm-2 float-right">
+        <button class="btn btn-success">Salvar</button>
+    </div>
+</form>
